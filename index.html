@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIMTEK BOSKIN CILACAP TP 2026/2027</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.25s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col md:flex-row text-slate-800 antialiased overflow-hidden bg-slate-50">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-full md:w-64 bg-slate-900 text-white flex flex-col flex-shrink-0 transition-all duration-300 shadow-xl z-20">
+        <!-- Logo & Header Sidebar -->
+        <div class="p-4 sm:p-5 flex items-center justify-between md:justify-start gap-3 border-b border-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-indigo-500/30">
+                    <i class="fa-solid fa-school"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-sm tracking-wide text-slate-100">BOSKIN CILACAP</h1>
+                    <p class="text-[10px] text-amber-400 font-semibold uppercase tracking-wider">TP 2026/2027</p>
+                </div>
+            </div>
+            <!-- Mobile Menu Toggle Button -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-slate-400 hover:text-white p-2 text-base" aria-label="Menu Toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Navigation Menu Items -->
+        <nav id="sidebarNav" class="hidden md:flex flex-1 px-3 py-4 space-y-1.5 overflow-y-auto custom-scrollbar flex-col">
+            <!-- 1. Beranda -->
+            <button onclick="switchTab('beranda')" id="nav-beranda" class="nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all bg-indigo-600 text-white shadow-lg shadow-indigo-600/30">
+                <i class="fa-solid fa-house w-5 text-center text-sm"></i>
+                <span class="flex-1 text-left">Beranda</span>
+            </button>
+
+            <!-- 2. Menu Dropdown: Informasi -->
+            <div class="space-y-1">
+                <button onclick="toggleDropdown('dropdown-informasi')" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white group">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-circle-info w-5 text-center text-sky-400 text-sm"></i>
+                        <span>Informasi</span>
+                    </div>
+                    <i id="icon-dropdown-informasi" class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200 text-slate-500 group-hover:text-slate-300"></i>
+                </button>
+                <div id="dropdown-informasi" class="pl-8 pr-1 space-y-1 hidden">
+                    <button onclick="switchTab('aktivasi-akun')" id="nav-aktivasi-akun" class="nav-item w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 transition-all">
+                        <i class="fa-solid fa-key text-[11px] text-amber-400 w-4 text-center"></i>
+                        <span class="flex-1 text-left">Aktivasi Akun</span>
+                    </button>
+                    <button onclick="switchTab('jadwal')" id="nav-jadwal" class="nav-item w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 transition-all">
+                        <i class="fa-solid fa-calendar-days text-[11px] text-sky-400 w-4 text-center"></i>
+                        <span class="flex-1 text-left">Jadwal</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3. Menu Dropdown: Materi -->
+            <div class="space-y-1">
+                <button onclick="toggleDropdown('dropdown-materi')" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white group">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-book-open-reader w-5 text-center text-amber-400 text-sm"></i>
+                        <span>Materi</span>
+                    </div>
+                    <i id="icon-dropdown-materi" class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200 text-slate-500 group-hover:text-slate-300"></i>
+                </button>
+                <div id="dropdown-materi" class="pl-8 pr-1 space-y-1 hidden">
+                    <button onclick="switchTab('spmi')" id="nav-spmi" class="nav-item w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 transition-all">
+                        <i class="fa-solid fa-award text-[11px] text-amber-400 w-4 text-center"></i>
+                        <span class="flex-1 text-left">Materi SPMI</span>
+                    </button>
+                    <button onclick="switchTab('litnum')" id="nav-litnum" class="nav-item w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 transition-all">
+                        <i class="fa-solid fa-book-bookmark text-[11px] text-purple-400 w-4 text-center"></i>
+                        <span class="flex-1 text-left">Materi Litnum</span>
+                    </button>
+                    <button onclick="switchTab('digitalisasi')" id="nav-digitalisasi" class="nav-item w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 transition-all">
+                        <i class="fa-solid fa-laptop-code text-[11px] text-teal-400 w-4 text-center"></i>
+                        <span class="flex-1 text-left">Materi Digitalisasi</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 4. Orbit -->
+            <button onclick="switchTab('orbit')" id="nav-orbit" class="nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                <i class="fa-solid fa-globe w-5 text-center text-sky-400 text-sm"></i>
+                <span class="flex-1 text-left">Orbit</span>
+            </button>
+
+            <!-- 5. Microsite -->
+            <button onclick="switchTab('microsite')" id="nav-microsite" class="nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                <i class="fa-solid fa-folder-open w-5 text-center text-emerald-400 text-sm"></i>
+                <span class="flex-1 text-left">Microsite</span>
+            </button>
+
+            <!-- 6. WhatsApp -->
+            <button onclick="switchTab('whatsapp')" id="nav-whatsapp" class="nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                <i class="fa-brands fa-whatsapp w-5 text-center text-emerald-500 text-sm"></i>
+                <span class="flex-1 text-left">WhatsApp</span>
+            </button>
+
+            <!-- 7. Formulir Pendataan SD, SMP & FASDA -->
+            <div class="pt-2 border-t border-slate-800/80 space-y-1.5">
+                <button onclick="switchTab('pendataan-sd')" id="nav-pendataan-sd" class="nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <i class="fa-solid fa-school-flag w-5 text-center text-amber-400 text-sm"></i>
+                    <span class="flex-1 text-left">Form Pendataan SD</span>
+                </button>
+
+                <button onclick="switchTab('pendataan')" id="nav-pendataan" class="nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <i class="fa-solid fa-id-card w-5 text-center text-indigo-400 text-sm"></i>
+                    <span class="flex-1 text-left">Form Pendataan SMP</span>
+                </button>
+
+                <button onclick="switchTab('pendataan-fasda')" id="nav-pendataan-fasda" class="nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <i class="fa-solid fa-chalkboard-user w-5 text-center text-orange-400 text-sm"></i>
+                    <span class="flex-1 text-left">Form Pendataan FASDA</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Database Spreadsheet Direct Link -->
+        <div class="p-3 border-t border-slate-800 hidden md:block">
+            <a href="https://docs.google.com/spreadsheets/d/1K76yoNRa8N8PU3z_P6HRRCwgiGGR_JLXneY3ZcGEtOE/edit" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between w-full px-3.5 py-2.5 rounded-xl text-xs font-medium text-emerald-400 bg-emerald-950/40 hover:bg-emerald-900/60 border border-emerald-800/50 transition-all">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-table-cells text-emerald-400"></i>
+                    <span>Database Sheets</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
+        
+        <!-- Header TopBar -->
+        <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between shadow-sm z-10 flex-shrink-0">
+            <div>
+                <h2 id="pageTitle" class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">Beranda Utama</h2>
+                <p id="pageSubTitle" class="text-xs text-slate-500 mt-0.5">Portal Resmi Bimbingan Teknis BOS Kinerja Cilacap TP 2026/2027</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Sistem Aktif
+                </span>
+            </div>
+        </header>
+
+        <!-- Dynamic Content View Area -->
+        <div class="flex-1 overflow-y-auto p-4 sm:p-6 custom-scrollbar bg-slate-50">
+
+            <!-- Tab 1: Beranda -->
+            <section id="tab-beranda" class="tab-content animate-fade-in space-y-6">
+                <!-- Welcome Banner -->
+                <div class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-slate-900 rounded-2xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+                    <div class="relative z-10 max-w-2xl">
+                        <span class="inline-block px-3 py-1 bg-amber-400/20 text-amber-300 border border-amber-400/30 rounded-full text-xs font-semibold mb-3">
+                            TP 2026/2027
+                        </span>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Selamat Datang di Portal BOSKIN CILACAP</h3>
+                        <p class="mt-2 text-slate-300 text-xs sm:text-sm leading-relaxed">
+                            Sistem pendataan dan portal informasi resmi Bimbingan Teknis Bantuan Operasional Satuan Pendidikan Kinerja (BOS Kinerja) untuk Satuan Pendidikan dan Fasilitator Daerah di Kabupaten Cilacap.
+                        </p>
+                        <div class="mt-5 flex flex-wrap gap-3">
+                            <button onclick="switchTab('pendataan-sd')" class="px-4 py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-semibold shadow-md transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-school-flag"></i> Isi Formulir SD
+                            </button>
+                            <button onclick="switchTab('pendataan')" class="px-4 py-2.5 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl text-xs font-semibold shadow-md transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-id-card"></i> Isi Formulir SMP
+                            </button>
+                            <button onclick="switchTab('pendataan-fasda')" class="px-4 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-xl text-xs font-semibold shadow-md transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-chalkboard-user"></i> Isi Formulir FASDA
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Action Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Aktivasi Akun Card -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-key"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900">Aktivasi Akun</h4>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                Panduan dan petunjuk teknis aktivasi akun BOS Kinerja resmi bagi sekolah penerima manfaat.
+                            </p>
+                        </div>
+                        <div class="flex justify-start pt-2 border-t border-slate-100">
+                            <button onclick="switchTab('aktivasi-akun')" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-semibold shadow-sm transition-all flex items-center gap-2">
+                                Buka Dokumen <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Jadwal Bimtek Card -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900">Jadwal Bimtek</h4>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                Rincian jadwal kegiatan, sesi pemaparan narasumber, dan agenda bimbingan teknis.
+                            </p>
+                        </div>
+                        <div class="flex justify-start pt-2 border-t border-slate-100">
+                            <button onclick="switchTab('jadwal')" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-semibold shadow-sm transition-all flex items-center gap-2">
+                                Lihat Jadwal <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Microsite Card -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-folder-open"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900">Pusat Microsite</h4>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                Akses berkas paparan, lembar kerja, dan juknis resmi di tautan s.id/boskin-cilacap-2026.
+                            </p>
+                        </div>
+                        <div class="flex justify-start pt-2 border-t border-slate-100">
+                            <button onclick="switchTab('microsite')" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold shadow-sm transition-all flex items-center gap-2">
+                                Buka Microsite <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab: Aktivasi Akun -->
+            <section id="tab-aktivasi-akun" class="tab-content hidden h-full flex flex-col animate-fade-in space-y-4">
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-key"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-900">Panduan Aktivasi Akun</h3>
+                            <p class="text-xs text-slate-500">Petunjuk teknis dan prosedur aktivasi akun BOS Kinerja</p>
+                        </div>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1XWSmpj7exrttzyJks6yCbqZ_cRqa7Cqq/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-semibold transition-all inline-flex items-center justify-center gap-2 shadow-sm">
+                        Buka Dokumen Asli <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+                <div class="flex-1 bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden min-h-[550px]">
+                    <iframe src="https://drive.google.com/file/d/1XWSmpj7exrttzyJks6yCbqZ_cRqa7Cqq/preview" class="w-full h-full border-0" title="Aktivasi Akun Preview"></iframe>
+                </div>
+            </section>
+
+            <!-- Tab: Jadwal -->
+            <section id="tab-jadwal" class="tab-content hidden h-full flex flex-col animate-fade-in space-y-4">
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-900">Jadwal Pelaksanaan BIMTEK</h3>
+                            <p class="text-xs text-slate-500">Agenda dan jadwal kegiatan Bimtek BOS Kinerja TP 2026/2027</p>
+                        </div>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1rixaGrZgO31Jz8Bgc3mkyqaU9n-fdHc6/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-semibold transition-all inline-flex items-center justify-center gap-2 shadow-sm">
+                        Buka Dokumen Asli <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+                <div class="flex-1 bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden min-h-[550px]">
+                    <iframe src="https://drive.google.com/file/d/1rixaGrZgO31Jz8Bgc3mkyqaU9n-fdHc6/preview" class="w-full h-full border-0" title="Jadwal Bimtek Preview"></iframe>
+                </div>
+            </section>
+
+            <!-- Tab: Materi SPMI -->
+            <section id="tab-spmi" class="tab-content hidden h-full flex flex-col animate-fade-in space-y-4">
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-900">Materi SPMI</h3>
+                            <p class="text-xs text-slate-500">Pusat berkas dan bahan pemaparan SPMI BPPMP Jawa Tengah</p>
+                        </div>
+                    </div>
+                    <a href="https://awan.bbpmpjateng.id/s/wzZ3yykXgSQfT2j" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-semibold transition-all inline-flex items-center justify-center gap-2 shadow-sm">
+                        Buka Tab Baru <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+                <div class="flex-1 bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden min-h-[500px]">
+                    <iframe src="https://awan.bbpmpjateng.id/s/wzZ3yykXgSQfT2j" class="w-full h-full border-0" title="SPMI Cloud"></iframe>
+                </div>
+            </section>
+
+            <!-- Tab: Materi Litnum -->
+            <section id="tab-litnum" class="tab-content hidden h-full flex flex-col animate-fade-in space-y-4">
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-900">Materi Litnum</h3>
+                            <p class="text-xs text-slate-500">Materi Literasi dan Numerasi BPPMP Jawa Tengah</p>
+                        </div>
+                    </div>
+                    <a href="https://awan.bbpmpjateng.id/s/2oHAf7aQNCoKjo2" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-semibold transition-all inline-flex items-center justify-center gap-2 shadow-sm">
+                        Buka Tab Baru <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+                <div class="flex-1 bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden min-h-[500px]">
+                    <iframe src="https://awan.bbpmpjateng.id/s/2oHAf7aQNCoKjo2" class="w-full h-full border-0" title="Litnum Cloud"></iframe>
+                </div>
+            </section>
+
+            <!-- Tab: Materi Digitalisasi -->
+            <section id="tab-digitalisasi" class="tab-content hidden h-full flex flex-col animate-fade-in space-y-4">
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-900">Materi Digitalisasi</h3>
+                            <p class="text-xs text-slate-500">Materi Digitalisasi Sekolah BPPMP Jawa Tengah</p>
+                        </div>
+                    </div>
+                    <a href="https://awan.bbpmpjateng.id/s/5CnzxXA7eETcMNi" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs font-semibold transition-all inline-flex items-center justify-center gap-2 shadow-sm">
+                        Buka Tab Baru <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+                <div class="flex-1 bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden min-h-[500px]">
+                    <iframe src="https://awan.bbpmpjateng.id/s/5CnzxXA7eETcMNi" class="w-full h-full border-0" title="Digitalisasi Cloud"></iframe>
+                </div>
+            </section>
+
+            <!-- Tab: Orbit -->
+            <section id="tab-orbit" class="tab-content hidden h-full flex flex-col animate-fade-in space-y-4">
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-900">Dashboard ORBIT BPPMP Jateng</h3>
+                            <p class="text-xs text-slate-500">Monitoring & Penjaminan Mutu BOS Kinerja</p>
+                        </div>
+                    </div>
+                    <a href="https://bppmpjateng.kemdikbud.go.id/orbit/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-semibold transition-all inline-flex items-center justify-center gap-2 shadow-sm">
+                        Buka Tab Baru <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+                <div class="flex-1 bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden min-h-[500px]">
+                    <iframe src="https://bppmpjateng.kemdikbud.go.id/orbit/" class="w-full h-full border-0" title="ORBIT BPPMP"></iframe>
+                </div>
+            </section>
+
+            <!-- Tab: Microsite -->
+            <section id="tab-microsite" class="tab-content hidden h-full flex flex-col animate-fade-in space-y-4">
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-900">Microsite Materi & Juknis</h3>
+                            <p class="text-xs text-slate-500">Pusat berkas dan bahan pemaparan bimtek BOS Kinerja</p>
+                        </div>
+                    </div>
+                    <a href="https://s.id/boskin-cilacap-2026" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition-all inline-flex items-center justify-center gap-2 shadow-sm">
+                        Buka Tab Baru <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+                <!-- Action Hub View for Microsite -->
+                <div class="flex-1 bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden min-h-[450px] flex flex-col items-center justify-center p-6 text-center">
+                    <div class="w-20 h-20 bg-emerald-50 text-emerald-600 rounded-3xl flex items-center justify-center text-4xl mb-4 shadow-sm">
+                        <i class="fa-solid fa-folder-tree"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">Pusat Informasi & Materi Bimtek</h4>
+                    <p class="text-xs text-slate-500 max-w-md mb-6 leading-relaxed">
+                        Akses seluruh berkas, slide presentasi narasumber, juknis BOS Kinerja 2026, dan panduan teknis lainnya langsung di tautan resmi Microsite:
+                    </p>
+                    <a href="https://s.id/boskin-cilacap-2026" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl text-xs font-bold shadow-lg shadow-emerald-600/20 transition-all inline-flex items-center gap-2.5">
+                        <i class="fa-solid fa-link"></i>
+                        <span>s.id/boskin-cilacap-2026</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Tab: WhatsApp -->
+            <section id="tab-whatsapp" class="tab-content hidden space-y-6 animate-fade-in">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Gabung Grup Card -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl mb-4">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <h4 class="font-bold text-base text-slate-900 mb-1">Grup WhatsApp Peserta</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                Bergabunglah dalam grup WhatsApp resmi peserta Bimtek BOS Kinerja Cilacap untuk koordinasi dan informasi cepat.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex justify-start">
+                            <a href="https://chat.whatsapp.com/H12e5T0QZUo5fJ8hMJ7zbF" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold shadow-md transition-all inline-flex items-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-sm"></i> Gabung Grup WA <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Broadcast Portal Card -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-2xl mb-4">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </div>
+                            <h4 class="font-bold text-base text-slate-900 mb-1">Portal Siaran Massal (Panitia)</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                Fasilitas khusus panitia pelaksana untuk mengirimkan pengumuman resmi ke seluruh kontak peserta terdaftar.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex justify-start">
+                            <button onclick="openAdminModal()" class="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold shadow-md transition-all inline-flex items-center gap-2">
+                                <i class="fa-solid fa-lock text-xs"></i> Buka Portal Siaran <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab: Form Pendataan SD -->
+            <section id="tab-pendataan-sd" class="tab-content hidden space-y-6 animate-fade-in">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Left Column: SD Registration Form -->
+                    <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+                        <div class="flex items-center justify-between pb-4 mb-5 border-b border-slate-100">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
+                                    <i class="fa-solid fa-school-flag text-sm"></i>
+                                </div>
+                                <h3 class="font-bold text-slate-900 text-sm">Formulir Peserta SD</h3>
+                            </div>
+                            <span class="text-[10px] font-semibold bg-amber-50 text-amber-700 px-2.5 py-1 rounded-full border border-amber-100">TP 2026/2027</span>
+                        </div>
+
+                        <form id="pendataanFormSd" onsubmit="handleFormSubmitSd(event)" class="space-y-4">
+                            <!-- Sekolah SD -->
+                            <div>
+                                <label for="sekolahSd" class="block text-xs font-bold text-slate-700 mb-1.5">SEKOLAH / SATUAN PENDIDIKAN SD *</label>
+                                <select id="sekolahSd" required class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all">
+                                    <option value="" disabled selected>-- Pilih Sekolah SD --</option>
+                                    <option value="SD NEGERI ADIMULYA 01 WANAREJA">SD NEGERI ADIMULYA 01 WANAREJA</option>
+                                    <option value="SD NEGERI ADIMULYA 05 WANAREJA">SD NEGERI ADIMULYA 05 WANAREJA</option>
+                                    <option value="SD NEGERI ALANGAMBA 01 BINANGUN">SD NEGERI ALANGAMBA 01 BINANGUN</option>
+                                    <option value="SD NEGERI BANGUNREJA 04 KEDUNGREJA">SD NEGERI BANGUNREJA 04 KEDUNGREJA</option>
+                                    <option value="SD NEGERI BANJAREJA 02 NUSAWUNGU">SD NEGERI BANJAREJA 02 NUSAWUNGU</option>
+                                    <option value="SD NEGERI BANTARMANGU 04 CIMANGGU">SD NEGERI BANTARMANGU 04 CIMANGGU</option>
+                                    <option value="SD NEGERI BINANGUN 03 BANTARSARI">SD NEGERI BINANGUN 03 BANTARSARI</option>
+                                    <option value="SD NEGERI BINGKENG 01 DAYEUHLUHUR">SD NEGERI BINGKENG 01 DAYEUHLUHUR</option>
+                                    <option value="SD NEGERI BINGKENG 02 DAYEUHLUHUR">SD NEGERI BINGKENG 02 DAYEUHLUHUR</option>
+                                    <option value="SD NEGERI BOJA 01 MAJENANG">SD NEGERI BOJA 01 MAJENANG</option>
+                                    <option value="SD NEGERI BOJONGSARI 01 KEDUNGREJA">SD NEGERI BOJONGSARI 01 KEDUNGREJA</option>
+                                    <option value="SD NEGERI BULUPAYUNG 03 KESUGIHAN">SD NEGERI BULUPAYUNG 03 KESUGIHAN</option>
+                                    <option value="SD NEGERI BUNTU 01 KROYA">SD NEGERI BUNTU 01 KROYA</option>
+                                    <option value="SD NEGERI CARUY 03 CIPARI">SD NEGERI CARUY 03 CIPARI</option>
+                                    <option value="SD NEGERI CIBEUNYING 04 MAJENANG">SD NEGERI CIBEUNYING 04 MAJENANG</option>
+                                    <option value="SD NEGERI CIBEUNYING 05 MAJENANG">SD NEGERI CIBEUNYING 05 MAJENANG</option>
+                                    <option value="SD NEGERI CIJATI 03 CIMANGGU">SD NEGERI CIJATI 03 CIMANGGU</option>
+                                    <option value="SD NEGERI CINANGSI 03 GANDRUNGMANGU">SD NEGERI CINANGSI 03 GANDRUNGMANGU</option>
+                                    <option value="SD NEGERI CIPARI 02 CIPARI">SD NEGERI CIPARI 02 CIPARI</option>
+                                    <option value="SD NEGERI CIPOROS 04 KARANGPUCUNG">SD NEGERI CIPOROS 04 KARANGPUCUNG</option>
+                                    <option value="SD NEGERI CISURU 02 CIPARI">SD NEGERI CISURU 02 CIPARI</option>
+                                    <option value="SD NEGERI CISURU 03 CIPARI">SD NEGERI CISURU 03 CIPARI</option>
+                                    <option value="SD NEGERI CIWALEN 03 DAYEUHLUHUR">SD NEGERI CIWALEN 03 DAYEUHLUHUR</option>
+                                    <option value="SD NEGERI DATAR 04 DAYEUHLUHUR">SD NEGERI DATAR 04 DAYEUHLUHUR</option>
+                                    <option value="SD NEGERI DAYEUHLUHUR 03 DAYEUHLUHUR">SD NEGERI DAYEUHLUHUR 03 DAYEUHLUHUR</option>
+                                    <option value="SD NEGERI DONDONG 03 KESUGIHAN">SD NEGERI DONDONG 03 KESUGIHAN</option>
+                                    <option value="SD NEGERI GLEMPANGPASIR 02 ADIPALA">SD NEGERI GLEMPANGPASIR 02 ADIPALA</option>
+                                    <option value="SD NEGERI GOMBOLHARJO 02 ADIPALA">SD NEGERI GOMBOLHARJO 02 ADIPALA</option>
+                                    <option value="SD NEGERI GUMILIR 04 CILACAP UTARA">SD NEGERI GUMILIR 04 CILACAP UTARA</option>
+                                    <option value="SD NEGERI GUNUNGSIMPING 04 CILACAP TENGAH">SD NEGERI GUNUNGSIMPING 04 CILACAP TENGAH</option>
+                                    <option value="SD NEGERI HANUM 03 DAYEUHLUHUR">SD NEGERI HANUM 03 DAYEUHLUHUR</option>
+                                    <option value="SD NEGERI JANGRANA KESUGIHAN">SD NEGERI JANGRANA KESUGIHAN</option>
+                                    <option value="SD NEGERI JATISARI 01 KEDUNGREJA">SD NEGERI JATISARI 01 KEDUNGREJA</option>
+                                    <option value="SD NEGERI JENANG 04 MAJENANG">SD NEGERI JENANG 04 MAJENANG</option>
+                                    <option value="SD NEGERI JEPARA KULON 04 BINANGUN">SD NEGERI JEPARA KULON 04 BINANGUN</option>
+                                    <option value="SD NEGERI KARANGANYAR 03 GANDRUNGMANGU">SD NEGERI KARANGANYAR 03 GANDRUNGMANGU</option>
+                                    <option value="SD NEGERI KARANGGINTUNG 05 GANDRUNGMANGU">SD NEGERI KARANGGINTUNG 05 GANDRUNGMANGU</option>
+                                    <option value="SD NEGERI KARANGMANGU 03 KROYA">SD NEGERI KARANGMANGU 03 KROYA</option>
+                                    <option value="SD NEGERI KARANGNANGKA BINANGUN">SD NEGERI KARANGNANGKA BINANGUN</option>
+                                    <option value="SD NEGERI KEDUNGREJA 02 KEDUNGREJA">SD NEGERI KEDUNGREJA 02 KEDUNGREJA</option>
+                                    <option value="SD NEGERI KEMOJING 02 BINANGUN">SD NEGERI KEMOJING 02 BINANGUN</option>
+                                    <option value="SD NEGERI KERTAJAYA 02 GANDRUNGMANGU">SD NEGERI KERTAJAYA 02 GANDRUNGMANGU</option>
+                                    <option value="SD NEGERI KESUGIHAN 04 KESUGIHAN">SD NEGERI KESUGIHAN 04 KESUGIHAN</option>
+                                    <option value="SD NEGERI KESUGIHAN KIDUL 02 KESUGIHAN">SD NEGERI KESUGIHAN KIDUL 02 KESUGIHAN</option>
+                                    <option value="SD NEGERI KURIPAN KIDUL 01 KESUGIHAN">SD NEGERI KURIPAN KIDUL 01 KESUGIHAN</option>
+                                    <option value="SD NEGERI KUTASARI 02 CIPARI">SD NEGERI KUTASARI 02 CIPARI</option>
+                                    <option value="SD NEGERI KUTASARI 03 CIPARI">SD NEGERI KUTASARI 03 CIPARI</option>
+                                    <option value="SD NEGERI MALABAR 03 WANAREJA">SD NEGERI MALABAR 03 WANAREJA</option>
+                                    <option value="SD NEGERI MANDALA 03 CIMANGGU">SD NEGERI MANDALA 03 CIMANGGU</option>
+                                    <option value="SD NEGERI MANDALA JERUKLEGI">SD NEGERI MANDALA JERUKLEGI</option>
+                                    <option value="SD NEGERI MERGAWATI 01 KROYA">SD NEGERI MERGAWATI 01 KROYA</option>
+                                    <option value="SD NEGERI MUJUR LOR 02 KROYA">SD NEGERI MUJUR LOR 02 KROYA</option>
+                                    <option value="SD NEGERI MULYADADI 01 CIPARI">SD NEGERI MULYADADI 01 CIPARI</option>
+                                    <option value="SD NEGERI MULYADADI 02 MAJENANG">SD NEGERI MULYADADI 02 MAJENANG</option>
+                                    <option value="SD NEGERI MULYADADI 03 CIPARI">SD NEGERI MULYADADI 03 CIPARI</option>
+                                    <option value="SD NEGERI MULYASARI 04 MAJENANG">SD NEGERI MULYASARI 04 MAJENANG</option>
+                                    <option value="SD NEGERI PADANGJAYA 02 MAJENANG">SD NEGERI PADANGJAYA 02 MAJENANG</option>
+                                    <option value="SD NEGERI PADANGJAYA 03 MAJENANG">SD NEGERI PADANGJAYA 03 MAJENANG</option>
+                                    <option value="SD NEGERI PAGUBUGAN 02 BINANGUN">SD NEGERI PAGUBUGAN 02 BINANGUN</option>
+                                    <option value="SD NEGERI PAGUBUGAN KULON 03 BINANGUN">SD NEGERI PAGUBUGAN KULON 03 BINANGUN</option>
+                                    <option value="SD NEGERI PAHONJEAN 02 MAJENANG">SD NEGERI PAHONJEAN 02 MAJENANG</option>
+                                    <option value="SD NEGERI PAHONJEAN 03 MAJENANG">SD NEGERI PAHONJEAN 03 MAJENANG</option>
+                                    <option value="SD NEGERI PAHONJEAN 04 MAJENANG">SD NEGERI PAHONJEAN 04 MAJENANG</option>
+                                    <option value="SD NEGERI PALUGON 02 WANAREJA">SD NEGERI PALUGON 02 WANAREJA</option>
+                                    <option value="SD NEGERI PANIMBANG 04 CIMANGGU">SD NEGERI PANIMBANG 04 CIMANGGU</option>
+                                    <option value="SD NEGERI PANULISAN BARAT 02 DAYEUHLUHUR">SD NEGERI PANULISAN BARAT 02 DAYEUHLUHUR</option>
+                                    <option value="SD NEGERI PANULISAN TIMUR 02 DAYEUHLUHUR">SD NEGERI PANULISAN TIMUR 02 DAYEUHLUHUR</option>
+                                    <option value="SD NEGERI PANULISAN TIMUR 03 DAYEUHLUHUR">SD NEGERI PANULISAN TIMUR 03 DAYEUHLUHUR</option>
+                                    <option value="SD NEGERI PANULISAN TIMUR 06 DAYEUHLUHUR">SD NEGERI PANULISAN TIMUR 06 DAYEUHLUHUR</option>
+                                    <option value="SD NEGERI PASURUHAN 03 BINANGUN">SD NEGERI PASURUHAN 03 BINANGUN</option>
+                                    <option value="SD NEGERI PATIMUAN 01 PATIMUAN">SD NEGERI PATIMUAN 01 PATIMUAN</option>
+                                    <option value="SD NEGERI PEGADINGAN 03 CIPARI">SD NEGERI PEGADINGAN 03 CIPARI</option>
+                                    <option value="SD NEGERI PEGADINGAN 04 CIPARI">SD NEGERI PEGADINGAN 04 CIPARI</option>
+                                    <option value="SD NEGERI PEGADINGAN 06 CIPARI">SD NEGERI PEGADINGAN 06 CIPARI</option>
+                                    <option value="SD NEGERI PEGADINGAN 07 CIPARI">SD NEGERI PEGADINGAN 07 CIPARI</option>
+                                    <option value="SD NEGERI PEKUNCEN 04 KROYA">SD NEGERI PEKUNCEN 04 KROYA</option>
+                                    <option value="SD NEGERI PENYARANG 04 SIDAREJA">SD NEGERI PENYARANG 04 SIDAREJA</option>
+                                    <option value="SD NEGERI PESAWAHAN 02 BINANGUN">SD NEGERI PESAWAHAN 02 BINANGUN</option>
+                                    <option value="SD NEGERI PESAWAHAN 03 BINANGUN">SD NEGERI PESAWAHAN 03 BINANGUN</option>
+                                    <option value="SD NEGERI RAWAAPU 03 PATIMUAN">SD NEGERI RAWAAPU 03 PATIMUAN</option>
+                                    <option value="SD NEGERI SADABUMI 03 MAJENANG">SD NEGERI SADABUMI 03 MAJENANG</option>
+                                    <option value="SD NEGERI SALEBU 03 MAJENANG">SD NEGERI SALEBU 03 MAJENANG</option>
+                                    <option value="SD NEGERI SALEBU 06 MAJENANG">SD NEGERI SALEBU 06 MAJENANG</option>
+                                    <option value="SD NEGERI SEGARALANGU 04 CIPARI">SD NEGERI SEGARALANGU 04 CIPARI</option>
+                                    <option value="SD NEGERI SIDAMUKTI 02 PATIMUAN">SD NEGERI SIDAMUKTI 02 PATIMUAN</option>
+                                    <option value="SD NEGERI SIDAMULYA 05 WANAREJA">SD NEGERI SIDAMULYA 05 WANAREJA</option>
+                                    <option value="SD NEGERI SIDANEGARA 03 KEDUNGREJA">SD NEGERI SIDANEGARA 03 KEDUNGREJA</option>
+                                    <option value="SD NEGERI SIDASARI 03 CIPARI">SD NEGERI SIDASARI 03 CIPARI</option>
+                                    <option value="SD NEGERI SIDAURIP 03 GANDRUNGMANGU">SD NEGERI SIDAURIP 03 GANDRUNGMANGU</option>
+                                    <option value="SD NEGERI SURUSUNDA 02 KARANGPUCUNG">SD NEGERI SURUSUNDA 02 KARANGPUCUNG</option>
+                                    <option value="SD NEGERI SURUSUNDA 03 KARANGPUCUNG">SD NEGERI SURUSUNDA 03 KARANGPUCUNG</option>
+                                    <option value="SD NEGERI TAMBAKREJA 04 KEDUNGREJA">SD NEGERI TAMBAKREJA 04 KEDUNGREJA</option>
+                                    <option value="SD NEGERI TAMBAKSARI 04 KEDUNGREJA">SD NEGERI TAMBAKSARI 04 KEDUNGREJA</option>
+                                    <option value="SD NEGERI TAYEM TIMUR 05 KARANGPUCUNG">SD NEGERI TAYEM TIMUR 05 KARANGPUCUNG</option>
+                                    <option value="SD NEGERI TEGALSARI 02 SIDAREJA">SD NEGERI TEGALSARI 02 SIDAREJA</option>
+                                    <option value="SD NEGERI TRITIH KULON 09 CILACAP UTARA">SD NEGERI TRITIH KULON 09 CILACAP UTARA</option>
+                                    <option value="SD NEGERI TRITIH WETAN 04 JERUKLEGI">SD NEGERI TRITIH WETAN 04 JERUKLEGI</option>
+                                    <option value="SD NEGERI UJUNGBARANG 02 MAJENANG">SD NEGERI UJUNGBARANG 02 MAJENANG</option>
+                                    <option value="SD NEGERI UJUNGBARANG 03 MAJENANG">SD NEGERI UJUNGBARANG 03 MAJENANG</option>
+                                    <option value="SD NEGERI WIDARAPAYUNG WETAN 01 BINANGUN">SD NEGERI WIDARAPAYUNG WETAN 01 BINANGUN</option>
+                                    <option value="SD NEGERI WIDARAPAYUNG WETAN 03 BINANGUN">SD NEGERI WIDARAPAYUNG WETAN 03 BINANGUN</option>
+                                    <option value="SD MUHAMMADIYAH 06">SD MUHAMMADIYAH 06</option>
+                                    <option value="SD MUHAMMADIYAH GANDRUNGMANIS">SD MUHAMMADIYAH GANDRUNGMANIS</option>
+                                    <option value="SD MUHAMMADIYAH JENANG">SD MUHAMMADIYAH JENANG</option>
+                                </select>
+                            </div>
+
+                            <!-- Nama & Jabatan SD -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label for="namaSd" class="block text-xs font-bold text-slate-700 mb-1.5">NAMA LENGKAP *</label>
+                                    <input type="text" id="namaSd" required placeholder="NAMA LENGKAP, S.Pd." class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all">
+                                    <p class="text-[10px] text-slate-400 mt-1">Nama utama KAPITAL</p>
+                                </div>
+                                <div>
+                                    <label for="jabatanSd" class="block text-xs font-bold text-slate-700 mb-1.5">JABATAN *</label>
+                                    <select id="jabatanSd" required class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all">
+                                        <option value="" disabled selected>-- Pilih --</option>
+                                        <option value="Kepala Sekolah">Kepala Sekolah</option>
+                                        <option value="Guru">Guru</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- NIP SD -->
+                            <div>
+                                <label for="nipSd" class="block text-xs font-bold text-slate-700 mb-1.5">NIP (BAGI YANG MEMILIKI)</label>
+                                <input type="text" id="nipSd" placeholder="19800101 200501 1 001" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all">
+                            </div>
+
+                            <!-- Email & No HP SD -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label for="emailSd" class="block text-xs font-bold text-slate-700 mb-1.5">EMAIL AKTIF *</label>
+                                    <input type="email" id="emailSd" required placeholder="nama@sekolah.sch.id" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label for="noHpSd" class="block text-xs font-bold text-slate-700 mb-1.5">NO. HP / WHATSAPP *</label>
+                                    <input type="tel" id="noHpSd" required placeholder="081234567890" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all">
+                                </div>
+                            </div>
+
+                            <!-- Submit Button SD -->
+                            <div class="pt-2">
+                                <button type="submit" id="submitBtnSd" class="w-full py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl text-xs shadow-md shadow-amber-500/20 transition-all flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span>Simpan & Kirim Data SD</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Right Column: Registered SD Table -->
+                    <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                                        <i class="fa-solid fa-users text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-slate-900 text-sm">Peserta SD Terdaftar (Lokal)</h3>
+                                        <p class="text-[11px] text-slate-400">Total: <span id="totalPesertaCountSd" class="font-bold text-amber-600">0</span> Peserta</p>
+                                    </div>
+                                </div>
+                                <button onclick="exportToCSVSd()" class="px-3 py-1.5 bg-emerald-50 text-emerald-600 hover:bg-emerald-100 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5">
+                                    <i class="fa-solid fa-download text-[11px]"></i> <span>Unduh CSV</span>
+                                </button>
+                            </div>
+
+                            <!-- Table SD -->
+                            <div class="overflow-x-auto custom-scrollbar">
+                                <table class="w-full text-left border-collapse text-xs">
+                                    <thead>
+                                        <tr class="bg-slate-50 border-y border-slate-200/80 text-slate-500 font-semibold uppercase tracking-wider text-[10px]">
+                                            <th class="p-3">Sekolah SD</th>
+                                            <th class="p-3">Nama Lengkap</th>
+                                            <th class="p-3">NIP</th>
+                                            <th class="p-3 text-center">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="pesertaTableBodySd" class="divide-y divide-slate-100">
+                                        <!-- Dynamic SD Rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Empty State SD -->
+                            <div id="emptyTableStateSd" class="py-12 text-center">
+                                <i class="fa-solid fa-folder-open text-4xl text-slate-300 mb-2"></i>
+                                <p class="text-xs text-slate-400 font-medium">Belum ada data peserta SD terdaftar di peramban ini.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Tab: Form Pendataan SMP -->
+            <section id="tab-pendataan" class="tab-content hidden space-y-6 animate-fade-in">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    
+                    <!-- Left Column: SMP Registration Form -->
+                    <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+                        <div class="flex items-center justify-between pb-4 mb-5 border-b border-slate-100">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                                    <i class="fa-solid fa-user-plus text-sm"></i>
+                                </div>
+                                <h3 class="font-bold text-slate-900 text-sm">Formulir Peserta SMP</h3>
+                            </div>
+                            <span class="text-[10px] font-semibold bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-full border border-indigo-100">TP 2026/2027</span>
+                        </div>
+
+                        <form id="pendataanForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <!-- Sekolah SMP -->
+                            <div>
+                                <label for="sekolah" class="block text-xs font-bold text-slate-700 mb-1.5">SEKOLAH / SATUAN PENDIDIKAN SMP *</label>
+                                <select id="sekolah" required class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
+                                    <option value="" disabled selected>-- Pilih Sekolah SMP --</option>
+                                    <option value="SMP NEGERI 1 CILACAP">SMP NEGERI 1 CILACAP</option>
+                                    <option value="SMP NEGERI 1 KAWUNGANTEN">SMP NEGERI 1 KAWUNGANTEN</option>
+                                    <option value="SMP NEGERI 1 NUSAWUNGU">SMP NEGERI 1 NUSAWUNGU</option>
+                                    <option value="SMP NEGERI 1 SATU ATAP KAMPUNG LAUT">SMP NEGERI 1 SATU ATAP KAMPUNG LAUT</option>
+                                    <option value="SMP NEGERI 2 CILACAP">SMP NEGERI 2 CILACAP</option>
+                                    <option value="SMP NEGERI 2 MAJENANG">SMP NEGERI 2 MAJENANG</option>
+                                    <option value="SMP NEGERI 2 MAOS">SMP NEGERI 2 MAOS</option>
+                                    <option value="SMP NEGERI 3 CILACAP">SMP NEGERI 3 CILACAP</option>
+                                    <option value="SMP NEGERI 3 GANDRUNGMANGU">SMP NEGERI 3 GANDRUNGMANGU</option>
+                                    <option value="SMP NEGERI 4 CILACAP">SMP NEGERI 4 CILACAP</option>
+                                    <option value="SMP NEGERI 4 SATU ATAP KARANGPUCUNG">SMP NEGERI 4 SATU ATAP KARANGPUCUNG</option>
+                                    <option value="SMP NEGERI 5 CILACAP">SMP NEGERI 5 CILACAP</option>
+                                    <option value="SMP NEGERI 9 CILACAP">SMP NEGERI 9 CILACAP</option>
+                                    <option value="SMP PGRI 3 Caruy">SMP PGRI 3 Caruy</option>
+                                    <option value="SMP ANAK SOLEH WANAREJA">SMP ANAK SOLEH WANAREJA</option>
+                                    <option value="SMP ISLAM AL MUJAHIDIN">SMP ISLAM AL MUJAHIDIN</option>
+                                    <option value="SMP IT INSAN MULIA MAOS">SMP IT INSAN MULIA MAOS</option>
+                                    <option value="SMP MARIA IMMACULATA CILACAP">SMP MARIA IMMACULATA CILACAP</option>
+                                    <option value="SMP MUHAMMADIYAH 2 CILACAP">SMP MUHAMMADIYAH 2 CILACAP</option>
+                                </select>
+                            </div>
+
+                            <!-- Nama & Jabatan SMP -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label for="nama" class="block text-xs font-bold text-slate-700 mb-1.5">NAMA LENGKAP *</label>
+                                    <input type="text" id="nama" required placeholder="NAMA LENGKAP, S.Pd." class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
+                                    <p class="text-[10px] text-slate-400 mt-1">Nama utama KAPITAL</p>
+                                </div>
+                                <div>
+                                    <label for="jabatan" class="block text-xs font-bold text-slate-700 mb-1.5">JABATAN *</label>
+                                    <select id="jabatan" required class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
+                                        <option value="" disabled selected>-- Pilih --</option>
+                                        <option value="Kepala Sekolah">Kepala Sekolah</option>
+                                        <option value="Guru">Guru</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- NIP SMP -->
+                            <div>
+                                <label for="nip" class="block text-xs font-bold text-slate-700 mb-1.5">NIP (BAGI YANG MEMILIKI)</label>
+                                <input type="text" id="nip" placeholder="19800101 200501 1 001" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
+                            </div>
+
+                            <!-- Email & No HP SMP -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label for="email" class="block text-xs font-bold text-slate-700 mb-1.5">EMAIL AKTIF *</label>
+                                    <input type="email" id="email" required placeholder="nama@sekolah.sch.id" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label for="noHp" class="block text-xs font-bold text-slate-700 mb-1.5">NO. HP / WHATSAPP *</label>
+                                    <input type="tel" id="noHp" required placeholder="081234567890" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
+                                </div>
+                            </div>
+
+                            <!-- Submit Button SMP -->
+                            <div class="pt-2">
+                                <button type="submit" id="submitBtn" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs shadow-md shadow-indigo-500/20 transition-all flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span>Simpan & Kirim Data SMP</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Right Column: Registered SMP Table -->
+                    <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                                        <i class="fa-solid fa-users text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-slate-900 text-sm">Peserta SMP Terdaftar (Lokal)</h3>
+                                        <p class="text-[11px] text-slate-400">Total: <span id="totalPesertaCount" class="font-bold text-indigo-600">0</span> Peserta</p>
+                                    </div>
+                                </div>
+                                <button onclick="exportToCSV()" class="px-3 py-1.5 bg-emerald-50 text-emerald-600 hover:bg-emerald-100 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5">
+                                    <i class="fa-solid fa-download text-[11px]"></i> <span>Unduh CSV</span>
+                                </button>
+                            </div>
+
+                            <!-- Table SMP -->
+                            <div class="overflow-x-auto custom-scrollbar">
+                                <table class="w-full text-left border-collapse text-xs">
+                                    <thead>
+                                        <tr class="bg-slate-50 border-y border-slate-200/80 text-slate-500 font-semibold uppercase tracking-wider text-[10px]">
+                                            <th class="p-3">Sekolah SMP</th>
+                                            <th class="p-3">Nama Lengkap</th>
+                                            <th class="p-3">NIP</th>
+                                            <th class="p-3 text-center">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="pesertaTableBody" class="divide-y divide-slate-100">
+                                        <!-- Dynamic SMP Rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Empty State SMP -->
+                            <div id="emptyTableState" class="py-12 text-center">
+                                <i class="fa-solid fa-folder-open text-4xl text-slate-300 mb-2"></i>
+                                <p class="text-xs text-slate-400 font-medium">Belum ada data peserta SMP terdaftar di peramban ini.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Tab: Form Pendataan FASDA -->
+            <section id="tab-pendataan-fasda" class="tab-content hidden space-y-6 animate-fade-in">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    
+                    <!-- Left Column: FASDA Registration Form -->
+                    <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+                        <div class="flex items-center justify-between pb-4 mb-5 border-b border-slate-100">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center">
+                                    <i class="fa-solid fa-chalkboard-user text-sm"></i>
+                                </div>
+                                <h3 class="font-bold text-slate-900 text-sm">Formulir Fasilitator Daerah (FASDA)</h3>
+                            </div>
+                            <span class="text-[10px] font-semibold bg-orange-50 text-orange-700 px-2.5 py-1 rounded-full border border-orange-100">TP 2026/2027</span>
+                        </div>
+
+                        <form id="pendataanFormFasda" onsubmit="handleFormSubmitFasda(event)" class="space-y-4">
+                            <!-- 1. Materi BIMTEK -->
+                            <div>
+                                <label for="materiFasda" class="block text-xs font-bold text-slate-700 mb-1.5">MATERI BIMTEK *</label>
+                                <select id="materiFasda" required class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all">
+                                    <option value="" disabled selected>-- Pilih Materi BIMTEK --</option>
+                                    <option value="SPMI">SPMI</option>
+                                    <option value="Litnum">Litnum</option>
+                                    <option value="Digitalisasi">Digitalisasi</option>
+                                </select>
+                            </div>
+
+                            <!-- 2. Nama FASDA (Dropdown) -->
+                            <div>
+                                <label for="namaFasda" class="block text-xs font-bold text-slate-700 mb-1.5">NAMA FASDA *</label>
+                                <select id="namaFasda" required class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all">
+                                    <option value="" disabled selected>-- Pilih Nama FASDA --</option>
+                                    <option value="Sri Wahyu Puji Astuti, S.Pd., M.Si.">Sri Wahyu Puji Astuti, S.Pd., M.Si.</option>
+                                    <option value="Djumadi, S.Pd.">Djumadi, S.Pd.</option>
+                                    <option value="Adi Suyitno, S.Pd., M.Pd.">Adi Suyitno, S.Pd., M.Pd.</option>
+                                    <option value="Ali Romadhon Songlap, S.Pd.SD., M.Pd.">Ali Romadhon Songlap, S.Pd.SD., M.Pd.</option>
+                                    <option value="Almaskur, S.Pd., M.Pd.">Almaskur, S.Pd., M.Pd.</option>
+                                    <option value="Atin Fitriyani, S.Pd.">Atin Fitriyani, S.Pd.</option>
+                                    <option value="Daryanto, S.Pd., M.Pd">Daryanto, S.Pd., M.Pd</option>
+                                    <option value="Debi Shinta Dewi, S.Pd.Si., M.Pd.">Debi Shinta Dewi, S.Pd.Si., M.Pd.</option>
+                                    <option value="Dwi Wahyuning Aisyah, M.Pd.">Dwi Wahyuning Aisyah, M.Pd.</option>
+                                    <option value="Endri Purwati, M.Pd.">Endri Purwati, M.Pd.</option>
+                                    <option value="Hana Gayuh Utami, S.Pd.SD">Hana Gayuh Utami, S.Pd.SD</option>
+                                    <option value="Indra Iskandar, S.Pd.">Indra Iskandar, S.Pd.</option>
+                                    <option value="Isma Nuryani, S.Pd.">Isma Nuryani, S.Pd.</option>
+                                    <option value="Istikomah">Istikomah</option>
+                                    <option value="Iwan Rijal Winata, S.Pd.SD., M.Pd.">Iwan Rijal Winata, S.Pd.SD., M.Pd.</option>
+                                    <option value="Kartika Wahyuningsih, M.Pd.">Kartika Wahyuningsih, M.Pd.</option>
+                                    <option value="Kasmiyana Sulistiowati">Kasmiyana Sulistiowati</option>
+                                    <option value="Krista Adayu, M.Pd.">Krista Adayu, M.Pd.</option>
+                                    <option value="Mega Permatasari, M.Pd.">Mega Permatasari, M.Pd.</option>
+                                    <option value="Ratino, S.S., M.Pd.">Ratino, S.S., M.Pd.</option>
+                                    <option value="Sarkim, S.Pd.SD., M.Pd.">Sarkim, S.Pd.SD., M.Pd.</option>
+                                    <option value="Siti Nurjanah">Siti Nurjanah</option>
+                                    <option value="Sri Hartati, S.Pd., M.Pd.">Sri Hartati, S.Pd., M.Pd.</option>
+                                    <option value="Suratman, M.Pd.">Suratman, M.Pd.</option>
+                                    <option value="Triyanto,S.Pd.">Triyanto,S.Pd.</option>
+                                    <option value="Wartam, S.Pd.">Wartam, S.Pd.</option>
+                                    <option value="Wheni Dewi Sumiratsih, S.Pd., M.Pd.">Wheni Dewi Sumiratsih, S.Pd., M.Pd.</option>
+                                    <option value="Wuri Handayani,S.Pd.,M.Pd.">Wuri Handayani,S.Pd.,M.Pd.</option>
+                                </select>
+                            </div>
+
+                            <!-- 3. Jabatan (Dropdown) -->
+                            <div>
+                                <label for="jabatanFasda" class="block text-xs font-bold text-slate-700 mb-1.5">JABATAN *</label>
+                                <select id="jabatanFasda" required class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all">
+                                    <option value="" disabled selected>-- Pilih Jabatan --</option>
+                                    <option value="BBPMP">BBPMP</option>
+                                    <option value="Pengawas SD">Pengawas SD</option>
+                                    <option value="Pengawas SMP">Pengawas SMP</option>
+                                    <option value="Pengawas TK/PAUD">Pengawas TK/PAUD</option>
+                                    <option value="Kepala Sekolah">Kepala Sekolah</option>
+                                    <option value="Guru">Guru</option>
+                                </select>
+                            </div>
+
+                            <!-- 4. Email & 5. No HP/WhatsApp -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label for="emailFasda" class="block text-xs font-bold text-slate-700 mb-1.5">EMAIL AKTIF *</label>
+                                    <input type="email" id="emailFasda" required placeholder="nama@instansi.go.id" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label for="noHpFasda" class="block text-xs font-bold text-slate-700 mb-1.5">NO. HP / WHATSAPP *</label>
+                                    <input type="tel" id="noHpFasda" required placeholder="081234567890" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all">
+                                </div>
+                            </div>
+
+                            <!-- Submit Button FASDA -->
+                            <div class="pt-2">
+                                <button type="submit" id="submitBtnFasda" class="w-full py-3 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-xl text-xs shadow-md shadow-orange-500/20 transition-all flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span>Simpan & Kirim Data FASDA</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Right Column: Registered FASDA Table -->
+                    <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center">
+                                        <i class="fa-solid fa-users text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-slate-900 text-sm">Fasilitator Terdaftar (Lokal)</h3>
+                                        <p class="text-[11px] text-slate-400">Total: <span id="totalPesertaCountFasda" class="font-bold text-orange-600">0</span> FASDA</p>
+                                    </div>
+                                </div>
+                                <button onclick="exportToCSVFasda()" class="px-3 py-1.5 bg-orange-50 text-orange-600 hover:bg-orange-100 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5">
+                                    <i class="fa-solid fa-download text-[11px]"></i> <span>Unduh CSV</span>
+                                </button>
+                            </div>
+
+                            <!-- Table FASDA -->
+                            <div class="overflow-x-auto custom-scrollbar">
+                                <table class="w-full text-left border-collapse text-xs">
+                                    <thead>
+                                        <tr class="bg-slate-50 border-y border-slate-200/80 text-slate-500 font-semibold uppercase tracking-wider text-[10px]">
+                                            <th class="p-3">Materi</th>
+                                            <th class="p-3">Nama FASDA</th>
+                                            <th class="p-3">Jabatan</th>
+                                            <th class="p-3 text-center">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="pesertaTableBodyFasda" class="divide-y divide-slate-100">
+                                        <!-- Dynamic FASDA Rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Empty State FASDA -->
+                            <div id="emptyTableStateFasda" class="py-12 text-center">
+                                <i class="fa-solid fa-folder-open text-4xl text-slate-300 mb-2"></i>
+                                <p class="text-xs text-slate-400 font-medium">Belum ada data Fasilitator Daerah terdaftar di peramban ini.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Custom Notification Modal (Replacement for browser alert) -->
+    <div id="customModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 animate-fade-in">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 text-center">
+            <div id="modalIconContainer" class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-xl bg-emerald-50 text-emerald-600">
+                <i id="modalIcon" class="fa-solid fa-check"></i>
+            </div>
+            <h3 id="modalTitle" class="font-bold text-slate-900 text-base mb-1">Pemberitahuan</h3>
+            <p id="modalMessage" class="text-xs text-slate-500 leading-relaxed mb-5">Pesan informasi.</p>
+            <button onclick="closeCustomModal()" class="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-xs shadow-md transition-all">
+                Mengerti
+            </button>
+        </div>
+    </div>
+
+    <!-- Custom Confirmation Modal (Replacement for browser confirm) -->
+    <div id="confirmModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 animate-fade-in">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 text-center">
+            <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 id="confirmTitle" class="font-bold text-slate-900 text-base mb-1">Konfirmasi Tindakan</h3>
+            <p id="confirmMessage" class="text-xs text-slate-500 leading-relaxed mb-5">Apakah Anda yakin?</p>
+            <div class="flex gap-2">
+                <button type="button" onclick="resolveConfirmModal(false)" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs transition-all">
+                    Batal
+                </button>
+                <button type="button" onclick="resolveConfirmModal(true)" class="w-1/2 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-semibold rounded-xl text-xs shadow-md transition-all">
+                    Ya, Lanjutkan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Authentication Modal (For WhatsApp Broadcast) -->
+    <div id="adminModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 animate-fade-in">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 transform transition-all">
+            <div class="text-center mb-5">
+                <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <h3 class="font-bold text-slate-900 text-base">Otorisasi Panitia</h3>
+                <p class="text-xs text-slate-500 mt-1">Masukkan PIN keamanan untuk membuka Portal Siaran Massal</p>
+            </div>
+            
+            <form onsubmit="verifyAdminPin(event)" class="space-y-4">
+                <div>
+                    <input type="password" id="adminPinInput" required placeholder="Masukkan PIN Admin" class="w-full text-center text-sm bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 font-mono tracking-widest focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+                <div class="flex gap-2">
+                    <button type="button" onclick="closeAdminModal()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs transition-all">
+                        Batal
+                    </button>
+                    <button type="submit" class="w-1/2 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-xs shadow-md transition-all">
+                        Verifikasi
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        /* Google Apps Script Web App URL */
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzBEYaoO-hkafKtOok41qK7dpoFA97A2JBSLx-xi-hTzxVkh0XolkIRHelxwYdDVbBEmQ/exec";
+
+        /* Local Storage Keys */
+        const LOCAL_STORAGE_KEY_SMP = "pesertaBimtekBoskin2026_SMP";
+        const LOCAL_STORAGE_KEY_SD = "pesertaBimtekBoskin2026_SD";
+        const LOCAL_STORAGE_KEY_FASDA = "pesertaBimtekBoskin2026_FASDA";
+
+        /* Tab titles and sub-headings metadata */
+        const tabTitles = {
+            'beranda': { title: 'Beranda Utama', sub: 'Portal Resmi Bimbingan Teknis BOS Kinerja Cilacap TP 2026/2027' },
+            'aktivasi-akun': { title: 'Panduan Aktivasi Akun', sub: 'Petunjuk Teknis dan Prosedur Aktivasi Akun BOS Kinerja' },
+            'jadwal': { title: 'Jadwal Pelaksanaan Bimtek', sub: 'Agenda Kegiatan Bimbingan Teknis BOS Kinerja TP 2026/2027' },
+            'spmi': { title: 'Materi SPMI', sub: 'Pusat Berkas & Bahan Pemaparan SPMI BPPMP Jawa Tengah' },
+            'litnum': { title: 'Materi Litnum', sub: 'Pusat Materi Literasi dan Numerasi BPPMP Jawa Tengah' },
+            'digitalisasi': { title: 'Materi Digitalisasi', sub: 'Pusat Materi Digitalisasi Sekolah BPPMP Jawa Tengah' },
+            'orbit': { title: 'Dashboard ORBIT', sub: 'Monitoring & Penjaminan Mutu BOS Kinerja BPPMP Jateng' },
+            'microsite': { title: 'Pusat Informasi & Materi', sub: 'Juknis BOSKIN, Materi Fasilitator, dan Panduan Teknis' },
+            'whatsapp': { title: 'Portal Informasi WhatsApp', sub: 'Grup Diskusi Peserta dan Portal Siaran Massal Panitia' },
+            'pendataan-sd': { title: 'Form Pendataan Peserta SD', sub: 'Pendataan Resmi Peserta Bimtek BOS Kinerja SD TP 2026/2027' },
+            'pendataan': { title: 'Form Pendataan Peserta SMP', sub: 'Pendataan Resmi Peserta Bimtek BOS Kinerja SMP TP 2026/2027' },
+            'pendataan-fasda': { title: 'Form Pendataan FASDA', sub: 'Pendataan Resmi Fasilitator Daerah Bimtek BOS Kinerja TP 2026/2027' }
+        };
+
+        let confirmResolver = null;
+
+        function showCustomAlert(title, message, isSuccess = true) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalMessage').innerText = message;
+            const iconContainer = document.getElementById('modalIconContainer');
+            const icon = document.getElementById('modalIcon');
+            
+            if (isSuccess) {
+                iconContainer.className = "w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-xl bg-emerald-50 text-emerald-600";
+                icon.className = "fa-solid fa-check";
+            } else {
+                iconContainer.className = "w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-xl bg-rose-50 text-rose-600";
+                icon.className = "fa-solid fa-triangle-exclamation";
+            }
+            document.getElementById('customModal').classList.remove('hidden');
+        }
+
+        function closeCustomModal() {
+            document.getElementById('customModal').classList.add('hidden');
+        }
+
+        function showCustomConfirm(title, message) {
+            return new Promise((resolve) => {
+                confirmResolver = resolve;
+                document.getElementById('confirmTitle').innerText = title;
+                document.getElementById('confirmMessage').innerText = message;
+                document.getElementById('confirmModal').classList.remove('hidden');
+            });
+        }
+
+        function resolveConfirmModal(result) {
+            document.getElementById('confirmModal').classList.add('hidden');
+            if (confirmResolver) {
+                confirmResolver(result);
+                confirmResolver = null;
+            }
+        }
+
+        function toggleMobileMenu() {
+            const nav = document.getElementById('sidebarNav');
+            nav.classList.toggle('hidden');
+        }
+
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            const icon = document.getElementById(`icon-${dropdownId}`);
+            if (dropdown) {
+                dropdown.classList.toggle('hidden');
+                if (icon) {
+                    icon.classList.toggle('rotate-180');
+                }
+            }
+        }
+
+        function switchTab(tabId) {
+            if (window.innerWidth < 768) {
+                document.getElementById('sidebarNav').classList.add('hidden');
+            }
+
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            
+            document.querySelectorAll('.nav-item').forEach(btn => {
+                if (btn.id === 'nav-spmi' || btn.id === 'nav-litnum' || btn.id === 'nav-digitalisasi' || btn.id === 'nav-aktivasi-akun' || btn.id === 'nav-jadwal') {
+                    btn.className = "nav-item w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 transition-all";
+                } else {
+                    btn.className = "nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white";
+                }
+            });
+
+            const selectedTab = document.getElementById(`tab-${tabId}`);
+            if (selectedTab) selectedTab.classList.remove('hidden');
+
+            const activeNav = document.getElementById(`nav-${tabId}`);
+            if (activeNav) {
+                if (tabId === 'pendataan-sd') {
+                    activeNav.className = "nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all bg-amber-600 text-white shadow-lg shadow-amber-600/30";
+                } else if (tabId === 'pendataan') {
+                    activeNav.className = "nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all bg-indigo-600 text-white shadow-lg shadow-indigo-600/30";
+                } else if (tabId === 'pendataan-fasda') {
+                    activeNav.className = "nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all bg-orange-600 text-white shadow-lg shadow-orange-600/30";
+                } else if (tabId === 'spmi' || tabId === 'litnum' || tabId === 'digitalisasi') {
+                    activeNav.className = "nav-item w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold transition-all bg-amber-500/20 text-amber-300 border border-amber-500/30";
+                    const dm = document.getElementById('dropdown-materi');
+                    if (dm && dm.classList.contains('hidden')) toggleDropdown('dropdown-materi');
+                } else if (tabId === 'aktivasi-akun' || tabId === 'jadwal') {
+                    activeNav.className = "nav-item w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold transition-all bg-sky-500/20 text-sky-300 border border-sky-500/30";
+                    const di = document.getElementById('dropdown-informasi');
+                    if (di && di.classList.contains('hidden')) toggleDropdown('dropdown-informasi');
+                } else {
+                    activeNav.className = "nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all bg-indigo-600 text-white shadow-lg shadow-indigo-600/30";
+                }
+            }
+
+            if (tabTitles[tabId]) {
+                document.getElementById('pageTitle').innerText = tabTitles[tabId].title;
+                document.getElementById('pageSubTitle').innerText = tabTitles[tabId].sub;
+            }
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text.toString()
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function getLocalPesertaSd() {
+            try {
+                const data = localStorage.getItem(LOCAL_STORAGE_KEY_SD);
+                return data ? JSON.parse(data) : [];
+            } catch (e) { return []; }
+        }
+
+        function saveLocalPesertaSd(list) {
+            try { localStorage.setItem(LOCAL_STORAGE_KEY_SD, JSON.stringify(list)); } 
+            catch (e) { console.error("Local storage error:", e); }
+        }
+
+        function renderPesertaTableSd() {
+            const list = getLocalPesertaSd();
+            const tbody = document.getElementById('pesertaTableBodySd');
+            const emptyState = document.getElementById('emptyTableStateSd');
+            const countDisplay = document.getElementById('totalPesertaCountSd');
+
+            countDisplay.innerText = list.length;
+
+            if (list.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            tbody.innerHTML = list.map((item, index) => `
+                <tr class="hover:bg-slate-50/80 transition-all">
+                    <td class="p-3 font-semibold text-slate-800">${escapeHtml(item.sekolah)}</td>
+                    <td class="p-3 text-slate-700">
+                        ${escapeHtml(item.nama)}
+                        <span class="block text-[10px] text-slate-400 font-normal">${escapeHtml(item.jabatan || '-')}</span>
+                    </td>
+                    <td class="p-3 text-slate-500 font-mono text-[11px]">${escapeHtml(item.nip || '-')}</td>
+                    <td class="p-3 text-center">
+                        <button onclick="deletePesertaSd(${index})" class="text-rose-500 hover:text-rose-700 p-1.5 rounded-lg hover:bg-rose-50 transition-all" title="Hapus Data">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function deletePesertaSd(index) {
+            const confirmed = await showCustomConfirm("Hapus Data SD", "Apakah Anda yakin ingin menghapus data peserta SD ini dari tampilan lokal?");
+            if (confirmed) {
+                const list = getLocalPesertaSd();
+                list.splice(index, 1);
+                saveLocalPesertaSd(list);
+                renderPesertaTableSd();
+                showCustomAlert("Berhasil", "Data peserta SD telah dihapus dari peramban lokal.");
+            }
+        }
+
+        async function handleFormSubmitSd(event) {
+            event.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtnSd');
+            const originalBtnHtml = submitBtn.innerHTML;
+
+            const payload = {
+                sheetName: "DATA_PESERTA_SD",
+                sekolah: document.getElementById('sekolahSd').value,
+                nama: document.getElementById('namaSd').value,
+                jabatan: document.getElementById('jabatanSd').value,
+                nip: document.getElementById('nipSd').value || "-",
+                email: document.getElementById('emailSd').value,
+                noHp: document.getElementById('noHpSd').value,
+                timestamp: new Date().toLocaleString('id-ID')
+            };
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Menyimpan Data SD...`;
+
+            const list = getLocalPesertaSd();
+            list.unshift(payload);
+            saveLocalPesertaSd(list);
+            renderPesertaTableSd();
+
+            try {
+                await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload)
+                });
+            } catch (err) {
+                console.warn("Background API Sync note:", err);
+            }
+
+            document.getElementById('pendataanFormSd').reset();
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHtml;
+
+            showCustomAlert("Pendaftaran Berhasil", "Data peserta SD berhasil disimpan ke server Google Sheets dan peramban lokal!");
+        }
+
+        function exportToCSVSd() {
+            const list = getLocalPesertaSd();
+            if (list.length === 0) {
+                showCustomAlert("Perhatian", "Belum ada data peserta SD untuk diunduh.", false);
+                return;
+            }
+
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Waktu Pendaftaran,Sekolah SD,Nama Lengkap,Jabatan,NIP,Email,No HP\n";
+
+            list.forEach(item => {
+                const row = [
+                    `"${item.timestamp || ''}"`,
+                    `"${item.sekolah || ''}"`,
+                    `"${item.nama || ''}"`,
+                    `"${item.jabatan || ''}"`,
+                    `"${item.nip || ''}"`,
+                    `"${item.email || ''}"`,
+                    `"${item.noHp || ''}"`
+                ].join(",");
+                csvContent += row + "\n";
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `Data_Peserta_SD_BOSKIN_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function getLocalPeserta() {
+            try {
+                const data = localStorage.getItem(LOCAL_STORAGE_KEY_SMP);
+                return data ? JSON.parse(data) : [];
+            } catch (e) { return []; }
+        }
+
+        function saveLocalPeserta(list) {
+            try { localStorage.setItem(LOCAL_STORAGE_KEY_SMP, JSON.stringify(list)); } 
+            catch (e) { console.error("Local storage error:", e); }
+        }
+
+        function renderPesertaTable() {
+            const list = getLocalPeserta();
+            const tbody = document.getElementById('pesertaTableBody');
+            const emptyState = document.getElementById('emptyTableState');
+            const countDisplay = document.getElementById('totalPesertaCount');
+
+            countDisplay.innerText = list.length;
+
+            if (list.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            tbody.innerHTML = list.map((item, index) => `
+                <tr class="hover:bg-slate-50/80 transition-all">
+                    <td class="p-3 font-semibold text-slate-800">${escapeHtml(item.sekolah)}</td>
+                    <td class="p-3 text-slate-700">
+                        ${escapeHtml(item.nama)}
+                        <span class="block text-[10px] text-slate-400 font-normal">${escapeHtml(item.jabatan || '-')}</span>
+                    </td>
+                    <td class="p-3 text-slate-500 font-mono text-[11px]">${escapeHtml(item.nip || '-')}</td>
+                    <td class="p-3 text-center">
+                        <button onclick="deletePeserta(${index})" class="text-rose-500 hover:text-rose-700 p-1.5 rounded-lg hover:bg-rose-50 transition-all" title="Hapus Data">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function deletePeserta(index) {
+            const confirmed = await showCustomConfirm("Hapus Data SMP", "Apakah Anda yakin ingin menghapus data peserta SMP ini dari tampilan lokal?");
+            if (confirmed) {
+                const list = getLocalPeserta();
+                list.splice(index, 1);
+                saveLocalPeserta(list);
+                renderPesertaTable();
+                showCustomAlert("Berhasil", "Data peserta SMP telah dihapus dari peramban lokal.");
+            }
+        }
+
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const originalBtnHtml = submitBtn.innerHTML;
+
+            const payload = {
+                sheetName: "DATA_PESERTA_SMP",
+                sekolah: document.getElementById('sekolah').value,
+                nama: document.getElementById('nama').value,
+                jabatan: document.getElementById('jabatan').value,
+                nip: document.getElementById('nip').value || "-",
+                email: document.getElementById('email').value,
+                noHp: document.getElementById('noHp').value,
+                timestamp: new Date().toLocaleString('id-ID')
+            };
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Menyimpan Data SMP...`;
+
+            const list = getLocalPeserta();
+            list.unshift(payload);
+            saveLocalPeserta(list);
+            renderPesertaTable();
+
+            try {
+                await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload)
+                });
+            } catch (err) {
+                console.warn("Background API Sync note:", err);
+            }
+
+            document.getElementById('pendataanForm').reset();
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHtml;
+
+            showCustomAlert("Pendaftaran Berhasil", "Data peserta SMP berhasil disimpan ke server Google Sheets dan peramban lokal!");
+        }
+
+        function exportToCSV() {
+            const list = getLocalPeserta();
+            if (list.length === 0) {
+                showCustomAlert("Perhatian", "Belum ada data peserta SMP untuk diunduh.", false);
+                return;
+            }
+
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Waktu Pendaftaran,Sekolah,Nama Lengkap,Jabatan,NIP,Email,No HP\n";
+
+            list.forEach(item => {
+                const row = [
+                    `"${item.timestamp || ''}"`,
+                    `"${item.sekolah || ''}"`,
+                    `"${item.nama || ''}"`,
+                    `"${item.jabatan || ''}"`,
+                    `"${item.nip || ''}"`,
+                    `"${item.email || ''}"`,
+                    `"${item.noHp || ''}"`
+                ].join(",");
+                csvContent += row + "\n";
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `Data_Peserta_SMP_BOSKIN_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function getLocalPesertaFasda() {
+            try {
+                const data = localStorage.getItem(LOCAL_STORAGE_KEY_FASDA);
+                return data ? JSON.parse(data) : [];
+            } catch (e) { return []; }
+        }
+
+        function saveLocalPesertaFasda(list) {
+            try { localStorage.setItem(LOCAL_STORAGE_KEY_FASDA, JSON.stringify(list)); } 
+            catch (e) { console.error("Local storage error:", e); }
+        }
+
+        function renderPesertaTableFasda() {
+            const list = getLocalPesertaFasda();
+            const tbody = document.getElementById('pesertaTableBodyFasda');
+            const emptyState = document.getElementById('emptyTableStateFasda');
+            const countDisplay = document.getElementById('totalPesertaCountFasda');
+
+            countDisplay.innerText = list.length;
+
+            if (list.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            tbody.innerHTML = list.map((item, index) => `
+                <tr class="hover:bg-slate-50/80 transition-all">
+                    <td class="p-3">
+                        <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-orange-100 text-orange-800">
+                            ${escapeHtml(item.materi)}
+                        </span>
+                    </td>
+                    <td class="p-3 font-semibold text-slate-800">
+                        ${escapeHtml(item.nama)}
+                        <span class="block text-[10px] text-slate-400 font-normal">${escapeHtml(item.email || '-')}</span>
+                    </td>
+                    <td class="p-3 text-slate-600 text-[11px]">${escapeHtml(item.jabatan || '-')}</td>
+                    <td class="p-3 text-center">
+                        <button onclick="deletePesertaFasda(${index})" class="text-rose-500 hover:text-rose-700 p-1.5 rounded-lg hover:bg-rose-50 transition-all" title="Hapus Data">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function deletePesertaFasda(index) {
+            const confirmed = await showCustomConfirm("Hapus Data FASDA", "Apakah Anda yakin ingin menghapus data FASDA ini dari tampilan lokal?");
+            if (confirmed) {
+                const list = getLocalPesertaFasda();
+                list.splice(index, 1);
+                saveLocalPesertaFasda(list);
+                renderPesertaTableFasda();
+                showCustomAlert("Berhasil", "Data FASDA telah dihapus dari peramban lokal.");
+            }
+        }
+
+        async function handleFormSubmitFasda(event) {
+            event.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtnFasda');
+            const originalBtnHtml = submitBtn.innerHTML;
+
+            const payload = {
+                sheetName: "FASDA",
+                materi: document.getElementById('materiFasda').value,
+                nama: document.getElementById('namaFasda').value,
+                jabatan: document.getElementById('jabatanFasda').value,
+                email: document.getElementById('emailFasda').value,
+                noHp: document.getElementById('noHpFasda').value,
+                timestamp: new Date().toLocaleString('id-ID')
+            };
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Menyimpan Data FASDA...`;
+
+            const list = getLocalPesertaFasda();
+            list.unshift(payload);
+            saveLocalPesertaFasda(list);
+            renderPesertaTableFasda();
+
+            try {
+                await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload)
+                });
+            } catch (err) {
+                console.warn("Background API Sync note:", err);
+            }
+
+            document.getElementById('pendataanFormFasda').reset();
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHtml;
+
+            showCustomAlert("Pendaftaran Berhasil", "Data FASDA berhasil disimpan ke sheet FASDA dan peramban lokal!");
+        }
+
+        function exportToCSVFasda() {
+            const list = getLocalPesertaFasda();
+            if (list.length === 0) {
+                showCustomAlert("Perhatian", "Belum ada data FASDA untuk diunduh.", false);
+                return;
+            }
+
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Waktu Pendaftaran,Materi BIMTEK,Nama FASDA,Jabatan,Email,No HP\n";
+
+            list.forEach(item => {
+                const row = [
+                    `"${item.timestamp || ''}"`,
+                    `"${item.materi || ''}"`,
+                    `"${item.nama || ''}"`,
+                    `"${item.jabatan || ''}"`,
+                    `"${item.email || ''}"`,
+                    `"${item.noHp || ''}"`
+                ].join(",");
+                csvContent += row + "\n";
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `Data_FASDA_BOSKIN_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function openAdminModal() {
+            document.getElementById('adminModal').classList.remove('hidden');
+            document.getElementById('adminPinInput').value = '';
+            document.getElementById('adminPinInput').focus();
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').classList.add('hidden');
+        }
+
+        function verifyAdminPin(event) {
+            event.preventDefault();
+            const pin = document.getElementById('adminPinInput').value;
+            if (pin === "bimtek26") {
+                closeAdminModal();
+                window.open("https://dinasdikbudcilacap.github.io/pesan-massal/", "_blank");
+            } else {
+                showCustomAlert("Akses Ditolak", "PIN Keamanan yang Anda masukkan salah. Silakan hubungi panitia pelaksana.", false);
+            }
+        }
+
+        /* Initializing application on window load */
+        window.onload = function() {
+            renderPesertaTable();
+            renderPesertaTableSd();
+            renderPesertaTableFasda();
+            switchTab('beranda'); 
+        };
+    </script>
+</body>
+</html>
